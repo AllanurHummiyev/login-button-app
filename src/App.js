@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { isLoggedIn: false };
+    this.changeState = this.changeState.bind(this);
+  }
+  changeState() {
+    this.setState({ isLoggedIn: !this.state.isLoggedIn });
+  }
+  render() {
+    const buttonText = this.state.isLoggedIn ? "Log Out" : "Log In";
+    const displayText = buttonText === "Log In" ? "out" : "in";
+    return (
+      <div>
+        <h1>You are logged {displayText}</h1>
+        <button onClick={this.changeState}>{buttonText}</button>
+      </div>
+    );
+  }
 }
 
 export default App;
